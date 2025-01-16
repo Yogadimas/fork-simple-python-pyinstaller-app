@@ -1,22 +1,13 @@
 node {
+     checkout scm
     def dockerImage
 
-    stage('Prepare Docker Environment') {
-        dockerImage = docker.image('python:3.12-slim')
-        dockerImage.run('-p 5000:5000')
-    }
 
     stage('Build') {
-        dockerImage.inside {
-            sh 'ls -la'
-            sh 'cp $WORKSPACE/requirements.txt .'
-            sh 'ls -la'
-            sh 'sudo pip install -r requirements.txt'
-            sh 'python -m py_compile sources/add2vals.py sources/calc.py'
-        }
+        dockerImage = docker.build("my-python-app", ".")
     }
 
-    stage('Test') {
+    stage('Tests') {
         dockerImage.inside {
             sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             junit 'test-reports/results.xml'
@@ -24,3 +15,4 @@ node {
     }
 
 }
+
