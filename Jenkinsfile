@@ -8,7 +8,7 @@ node {
 
     stage('Build') {
         dockerImage.inside {
-             sh 'cp /var/jenkins_home/workspace/dicoding/belajar-implementasi-cicd/submission-cicd-pipeline-yogadimas-python/requirements.txt .'
+             sh 'cp /var/jenkins_home/dicoding/belajar-implementasi-cicd/submission-cicd-pipeline-yogadimas-python/requirements.txt .'
             sh 'pip install -r requirements.txt'
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
