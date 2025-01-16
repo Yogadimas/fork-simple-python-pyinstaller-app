@@ -8,7 +8,10 @@ node {
 
     stage('Build') {
         dockerImage.inside {
-            sh 'pip install -r requirements.txt'
+            sh 'ls -la'
+            sh 'cp $WORKSPACE/requirements.txt .'
+            sh 'ls -la'
+            sh 'sudo pip install -r requirements.txt'
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
