@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  streamlit-app:
+    image: my-python-app
+    ports:
+      - 5000:5000

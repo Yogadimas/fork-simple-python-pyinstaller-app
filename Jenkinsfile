@@ -27,7 +27,7 @@ node {
     
     stage('Deploy') {
         if (env.SKIP_PROD == 'true') {
-            echo "Skip deploy"
+            echo "Lewati deploy"
             Utils.markStageSkippedForConditional('Deploy')
         } else {
             sh 'docker compose up -d'
