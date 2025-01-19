@@ -17,7 +17,7 @@ node {
     env.SKIP_PROD = 'true'
     stage("Manual Approval") {
         try {
-            input(message: 'Lanjutkan ke tahap Deploy?', ok: 'Yes')
+            input(message: 'Lanjutkan ke tahap Deploy?', ok: 'Ya')
             env.SKIP_PROD = 'false'
         } catch (Throwable e) {
             echo "Persetujuan diabaikan"
